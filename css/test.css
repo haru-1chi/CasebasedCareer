@@ -1,0 +1,29 @@
+.radio-group label {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    animation: fade-in 0.3s ease-in-out;
+  }
+  
+  .radio-group input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .radio-label {
+    display: inline-block;
+    padding-left: 10px;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
