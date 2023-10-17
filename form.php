@@ -11,7 +11,7 @@ include 'conn.php';
 </head>
 
 <body>
-	<nav class="navbar">
+	<nav class="navbar fixed-top">
 		<div class="container-nav">
 			<a class="navbar-brand" href="index.php">CasebasedOccupation</a>
 			<ul class="navbar-nav">
@@ -19,41 +19,51 @@ include 'conn.php';
 					<a class="nav-link" href="index.php">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">About me</a>
+					<a class="nav-link" href="about.php">About me</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
-	<form action="calculator.php" method="post">
+	<br><br><br><br>
+	<form action="result.php" method="post" id="myForm" onsubmit="return validateForm()">
 		<div class="container">
 			<legend align="center">ระบบช่วยสนับสนุนการตัดสินใจเลือกอาชีพสำหรับผู้พิการ</legend>
 			<br>
 			<label>กรุณากรอกข้อมูลเพื่อทำการวิเคราะห์</label>
 			<fieldset class="form-group">
 				<label>1. เพศ</label>
-				<label class="radio-inline">
-					<input type="radio" name="gender" value="ชาย" required>
-					<span class="radio-field-fit">
-						<span class="radio-label">ชาย</span>
-					</span>
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="gender" value="หญิง">
-					<span class="radio-field-fit">
-						<span class="radio-label">หญิง</span>
-					</span>
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="gender" value="อื่นๆ">
-					<span class="radio-field-fit">
-						<span class="radio-label">อื่นๆ</span>
-					</span>
-				</label>
+				<div class="checkbox-form">
+					<div class="column">
+						<label class="radio-inline">
+							<input type="radio" name="gender" value="ชาย" required>
+							<span class="radio-field-fit">
+								<span class="radio-label">ชาย</span>
+							</span>
+						</label>
+					</div>
+					<div class="column">
+						<label class="radio-inline">
+							<input type="radio" name="gender" value="หญิง">
+							<span class="radio-field-fit">
+								<span class="radio-label">หญิง</span>
+							</span>
+						</label>
+					</div>
+					<div class="column">
+						<label class="radio-inline">
+							<input type="radio" name="gender" value="อื่นๆ">
+							<span class="radio-field-fit">
+								<span class="radio-label">ไม่ระบุ</span>
+							</span>
+						</label>
+					</div>
+				</div>
 			</fieldset>
 
 			<fieldset class="form-group">
 				<label for="education">2. ระดับการศึกษา</label>
-				<select name="education" id="education" class="form-control" style="width: auto;">
+				<select name="education" id="education" class="form-control" style="width: auto;" required>
+					<option></option>
 					<option value="1">ไม่มี</option>
 					<option value="2">ประถมศึกษา</option>
 					<option value="3">มัธยมศึกษา</option>
@@ -66,7 +76,8 @@ include 'conn.php';
 
 			<fieldset class="form-group">
 				<label>3. สถานภาพ</label>
-				<select name="status_" id="status" class="form-control" style="width: auto;">
+				<select name="status_" id="status" class="form-control" style="width: auto;" required>
+					<option></option>
 					<option value="โสด">โสด</option>
 					<option value="สมรส">สมรส</option>
 					<option value="แยกกันอยู่">แยกกันอยู่</option>
@@ -78,42 +89,42 @@ include 'conn.php';
 		<div class="container">
 
 			<fieldset class="form-group">
-				<label>4. ประเภทความพิการ</label>
+				<label>4. ระบุความพิการ</label>
 				<label class="radio-inline radio-field">
 					<input type="radio" name="dis_type" value="1" onclick="updateDropdown()" required>
-					ประเภท 1 ด้านการมองเห็น (ตาบอด 1 ข้าง)
+					ด้านการมองเห็น (ตาบอด 1 ข้าง)
 				</label><br>
 				<label class="radio-inline radio-field">
 					<input type="radio" name="dis_type" value="9" onclick="updateDropdown()">
-					ประเภท 1 ด้านการมองเห็น (ตาบอด 2 ข้าง)
+					ด้านการมองเห็น (ตาบอด 2 ข้าง)
 				</label><br>
 				<label class="radio-inline radio-field">
 					<input type="radio" name="dis_type" value="2" onclick="updateDropdown()">
-					ประเภท 2 ด้านการได้ยิน (หูตึง หรือ ใส่เครื่องช่วยฟัง)
+					ด้านการได้ยิน (หูตึง หรือ ใส่เครื่องช่วยฟัง)
 				</label><br>
 				<label class="radio-inline radio-field">
 					<input type="radio" name="dis_type" value="4" onclick="updateDropdown()">
-					ประเภท 2 ด้านการได้ยิน (เป็นใบ้ พูดไม่ได้)
+					ด้านการได้ยิน (เป็นใบ้ พูดไม่ได้)
 				</label><br>
 				<label class="radio-inline radio-field">
 					<input type="radio" name="dis_type" value="3" onclick="updateDropdown()">
-					ประเภท 3 ด้านการเคลื่อนไหว (ยังสามารถเดินได้)
+					ด้านการเคลื่อนไหว (ยังสามารถเดินได้)
 				</label><br>
 				<label class="radio-inline radio-field">
 					<input type="radio" name="dis_type" value="8" onclick="updateDropdown()">
-					ประเภท 3 ด้านการเคลื่อนไหว (ไม่สามารถเดินได้)
+					ด้านการเคลื่อนไหว (ไม่สามารถเดินได้)
 				</label><br>
 				<label class="radio-inline radio-field">
 					<input type="radio" name="dis_type" value="7" onclick="updateDropdown()">
-					ประเภท 4 ด้านจิตใจหรือพฤติกรรม
+					ด้านจิตใจหรือพฤติกรรม
 				</label><br>
 				<label class="radio-inline radio-field">
 					<input type="radio" name="dis_type" value="6" onclick="updateDropdown()">
-					ประเภท 5 ด้านสติปัญญาและการเรียนรู้
+					ด้านสติปัญญาและการเรียนรู้
 				</label 2 bel><br>
 				<label class="radio-inline radio-field">
 					<input type="radio" name="dis_type" value="5" onclick="updateDropdown()">
-					ประเภท 5 ออทิสติก
+					ออทิสติก
 				</label> <!-- ออทิสติก1 ด้านสติปัญญาและการเรียนรู้2 ด้านจิตใจหรือพฤติกรรม3 -->
 			</fieldset>
 
@@ -121,9 +132,9 @@ include 'conn.php';
 			<fieldset class="form-group">
 				<label>5. มีอุปกรณ์อำนวยความสะดวกหรือไม่ โปรดระบุ เช่น เครื่องช่วยฟัง
 					<br>&nbsp;&nbsp;&nbsp;&nbsp;รถเข็น(วีลแชร์) อื่นๆ</label>
-				<select id="tool" name="tool" style="width: 38%;">
+				<select id="tool" name="tool">
 				</select>
-				<input type="text" name="tool" id="toolfree" style="width: 38%; display: none;"
+				<input type="text" name="tool" id="toolfree" style="display: none;"
 					placeholder="โปรดระบุ..." disabled>
 				<!-- เดินไม่ได้ = วิลแชร์ ยังเดินได้ = ขาเทียม, ไม้ค้ำยัน, ไม้เท้า, วิลแชร์ หูตึง = เครื่องช่วยฟัง, เขียนพิมพ์สื่อสาร ตาบอด = ไม้เท้า -->
 			</fieldset>
@@ -131,10 +142,10 @@ include 'conn.php';
 			<fieldset class="form-group">
 				<label>6. มีผู้ดูแลหรือไม่</label>
 				<label class="radio-inline"><input type="radio" name="keepercheck" id="keepernone" value="ไม่มี"
-						onclick="disableKeeper()">ไม่มี</label>
+						onclick="disableKeeper()" required>ไม่มี</label>
 				<label class="radio-inline"><input type="radio" name="keepercheck" id="keeperhave" value="มี"
-						onclick="disableKeeper()">มี เกี่ยวข้องเป็น</label>
-				<select name="keeper" id="keeper" class="form-control-lg" style="width: auto;" disabled>
+						onclick="disableKeeper()" required>มี เกี่ยวข้องเป็น</label>
+				<select name="keeper" id="keeper" class="form-control-lg" style="width: auto;" disabled required>
 					<option></option>
 					<option value="บิดา/มารดา">บิดา/มารดา</option>
 					<option value="พี่/น้อง">พี่/น้อง</option>
@@ -149,29 +160,29 @@ include 'conn.php';
 
 		<div class="container">
 			<fieldset class="form-group">
-				<label>8. เงินลงทุนที่มีสำหรับประกอบอาชีพ โปรดระบุจำนวนเงิน</label>
+				<label>7. เงินลงทุนที่มีสำหรับประกอบอาชีพ โปรดระบุจำนวนเงิน</label>
 				<label class="radio-inline"><input type="radio" name="investcheck" id="investnone" value="ไม่มี"
-						onclick="disableInvest()">ไม่มี</label>
+						onclick="disableInvest()" required>ไม่มี</label>
 				<label class="radio-inline"><input type="radio" name="investcheck" id="investhave" value="มี"
-						onclick="disableInvest()">มี
+						onclick="disableInvest()" required>มี
 					<input type="text" id="invest" name="invest" size="7" style="width: auto;" min="0" max="9999999"
-						disabled>
+						disabled required>
 					บาท</label>
 			</fieldset>
 
 			<fieldset class="form-group">
-				<label>9. เคยกู้ยืมเงินผู้พิการเพื่อประกอบอาชีพหรือไม่ โปรดระบุจำนวนเงินที่กู้ยืม</label>
+				<label>8. เคยกู้ยืมเงินผู้พิการเพื่อประกอบอาชีพหรือไม่ โปรดระบุจำนวนเงินที่กู้ยืม</label>
 				<label class="radio-inline"><input type="radio" name="loancheck" id="loannone" value="ไม่มี"
-						onclick="disableLoan()">ไม่เคย</label>
+						onclick="disableLoan()" required>ไม่เคย</label>
 				<label class="radio-inline"><input type="radio" name="loancheck" id="loanhave" value="มี"
-						onclick="disableLoan()">เคย
-					<input type="text" id="loan" name="loan" size="6" style="width: auto;" min="0" max="100000"
-						disabled>
+						onclick="disableLoan()" required>เคย
+					<input type="text" id="loan" name="loan" size="6" style="width: auto;" min="0" max="100000" disabled
+						required>
 					บาท</label><!-- 0-10000, 10000-20000, 20000-40000, >40000 -->
 			</fieldset>
 
-			<fieldset class="form-group">
-				<label>7. งานอดิเรก</label>
+			<fieldset class="form-group" id="hobbyFieldset">
+				<label>9. งานอดิเรก (เลือกได้มากกว่า 1 ตัวเลือก)</label>
 				<label class="checkbox-label">
 					<input type="checkbox" id="hobbynone" value="ไม่มี" onclick="disableCheckboxesHobby()">
 					ไม่มี
@@ -234,11 +245,11 @@ include 'conn.php';
 					อื่นๆ
 					<span class="checkbox-checkmark"></span>
 				</label>
-				<input type="text" name="hobby[]" id="hobby" placeholder="โปรดระบุ..." disabled>
+				<input type="text" name="hobby[]" id="hobby" placeholder="โปรดระบุ..." disabled required>
 			</fieldset>
 
 			<fieldset class="form-group">
-				<label>8. ความถนัด</label>
+				<label>10. ความถนัด (เลือกได้มากกว่า 1 ตัวเลือก)</label>
 				<label class="checkbox-label"><input type="checkbox" id="aptitudenone" value="ไม่มี"
 						onclick="disableCheckboxesAptitude()">ไม่มี
 					<span class="checkbox-checkmark"></span>
@@ -296,7 +307,7 @@ include 'conn.php';
 			</fieldset>
 
 			<fieldset class="form-group">
-				<label>9. วิธีเดินทางไปทำงาน</label><br>
+				<label>11. วิธีเดินทางไปทำงาน (เลือกได้มากกว่า 1 ตัวเลือก)</label><br>
 
 				<div class="checkbox-form">
 					<div class="column">
@@ -311,12 +322,12 @@ include 'conn.php';
 								value="รถโดยสารประจำทาง">รถโดยสารประจำทาง<span class="checkbox-checkmark"></span>
 						</label><br>
 						<label class="checkbox-label"><input type="checkbox" name="commute[]"
-								value="เดินเท้า">จักรยาน<span class="checkbox-checkmark"></span>
+								value="จักรยาน">จักรยาน<span class="checkbox-checkmark"></span>
 						</label><br>
 					</div>
 					<div class="column">
 						<label class="checkbox-label"><input type="checkbox" name="commute[]"
-								value="เดินเท้า">ติดรถผู้อื่นไปทำงาน<span class="checkbox-checkmark"></span>
+								value="ติดรถผู้อื่นไปทำงาน">ติดรถผู้อื่นไปทำงาน<span class="checkbox-checkmark"></span>
 						</label><br>
 						<label class="checkbox-label"><input type="checkbox" name="commute[]"
 								value="เดินเท้า">เดินเท้า<span class="checkbox-checkmark"></span>
@@ -337,6 +348,30 @@ include 'conn.php';
 	</div>
 
 	<script>
+
+		function validateForm() {
+			var hobbyNoneCheckbox = document.getElementById('hobbynone');
+			var hobbyOtherCheckbox = document.getElementById('hobbyother');
+			var hobbyCheckboxes = document.querySelectorAll('input[name="hobby[]"]:checked');
+
+			var aptitudeNoneCheckbox = document.getElementById('aptitudenone');
+			var aptitudeOtherCheckbox = document.getElementById('aptitudeother');
+			var aptitudeCheckboxes = document.querySelectorAll('input[name="aptitude[]"]:checked');
+
+			var commuteCheckboxes = document.querySelectorAll('input[name="commute[]"]:checked');
+
+			if (
+				(hobbyNoneCheckbox.checked || hobbyOtherCheckbox.checked || hobbyCheckboxes.length > 0) &&
+				(aptitudeNoneCheckbox.checked || aptitudeOtherCheckbox.checked || aptitudeCheckboxes.length > 0) &&
+				commuteCheckboxes.length > 0
+			) {
+				return true; // Allow form submission
+			} else {
+				alert("กรุณาเลือกคำตอบในแต่ละส่วนอย่างน้อย 1 ตัวเลือก");
+				return false; // Prevent form submission
+			}
+		}
+
 		function toggleFontSize() {
 			var body = document.getElementsByTagName("body")[0];
 			var floatBtn = document.getElementsByClassName("float-btn")[0];

@@ -1,14 +1,22 @@
+html{
+    height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
   color: #333;
+
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 
 body.increase-font {
-  font-size: 18px; /* Increase the value to adjust the font size */
+  font-size: 18px;
+  /* Increase the value to adjust the font size */
 }
 
 body.inverted-color {
@@ -34,8 +42,36 @@ body.inverted-color {
     margin-right: 10px;
   }
 
-  .container-info {
-    padding: 50px;
+  .container-fluid {
+    height: auto;
+    /* Adjust height for smaller screens */
+  }
+
+  /* Center-align headings */
+  .center-text {
+    text-align: center;
+  }
+
+  /* Adjust buttons for smaller screens */
+  .btn {
+    font-size: 14px;
+    /* Reduce font size for smaller screens */
+    padding: 8px 16px;
+    /* Reduce button padding for smaller screens */
+  }
+
+  /* Increase padding for the floating action button container */
+  .float-button-container {
+    padding-right: 15px;
+  }
+
+  /* Adjust margins for form inputs */
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    margin-bottom: 8px;
   }
 }
 
@@ -155,6 +191,7 @@ label {
   font-weight: bold;
   transition: color 0.3s ease;
 }
+
 .color-mode-btn {
   position: absolute;
   bottom: 0;
@@ -201,7 +238,8 @@ label {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border: 4px solid white; /* Add white border */
+  border: 4px solid white;
+  /* Add white border */
 }
 
 .float-btn.color-mode-btn {
@@ -223,8 +261,10 @@ label {
 }
 
 .float-button-container .float-btn {
-  background-color: white; /* Set background color to white */
-  color: white; /* Set text color to black */
+  background-color: white;
+  /* Set background color to white */
+  color: white;
+  /* Set text color to black */
 }
 
 
@@ -232,7 +272,7 @@ input[type="text"],
 input[type="email"],
 textarea,
 select {
-  display: inline-block;
+  width: 50%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -286,6 +326,7 @@ button:hover {
   width: 100%;
   /* Other button styles */
 }
+
 /* Color adjustments for disabled people */
 
 body {
@@ -303,11 +344,11 @@ input[type="email"],
 textarea,
 select {
 
-background-color: #fff;
+  background-color: #fff;
 
-border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
 
-color: #333;
+  color: #333;
 }
 
 select:disabled {
@@ -352,10 +393,12 @@ button:hover {
   font-size: 1em;
   transition: color 0.3s ease;
 }
-.checkbox-label input:focus ~ .checkbox-checkmark {
+
+.checkbox-label input:focus~.checkbox-checkmark {
   outline: 2px solid #777;
   /* Add any other styles you want for the focus state */
 }
+
 .checkbox-label input {
   position: absolute;
   opacity: 0;
@@ -368,12 +411,12 @@ button:hover {
   left: 0;
   height: 20px;
   width: 20px;
-  
+
   border: 2px solid #ccc;
   transition: background-color 0.3s ease;
 }
 
-.checkbox-label input:disabled ~ .checkbox-checkmark {
+.checkbox-label input:disabled~.checkbox-checkmark {
   background-color: #ccc;
   border-color: #ccc;
 }
@@ -438,9 +481,11 @@ button:hover {
 .radio-field:hover {
   border-color: #555;
 }
+
 .radio-field-fit:hover {
   border-color: #555;
 }
+
 .radio-label {
   margin-right: 5px;
   font-size: 1em;
@@ -468,11 +513,11 @@ button:hover {
   background-color: #777;
 }
 
-
 .table {
   width: 70%;
   margin: 0 auto;
 }
+
 th,
 td {
   padding: 10px;
@@ -517,7 +562,13 @@ td[headers="header3"] {
 }
 
 @media (max-width: 600px) {
+  .table-container {
+    overflow-x: auto;
+}
+
   .table {
+    width: 100%;
+    margin-top: 20px;
     display: block;
     overflow-x: auto;
     /* white-space: nowrap; */
