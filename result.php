@@ -196,6 +196,9 @@
             if ($_POST['dis_type'] == 9 && in_array($case['caseDetails']['occupation'], $elementsToRemove)) {
                 continue;
             }
+            if ($_POST['dis_type'] == 4 && $case['caseDetails']['occupation'] == 'นักดนตรี') {
+                continue;
+            }
             $uniqueCases[] = $case['caseDetails']['occupation'];
         }
 
